@@ -14,6 +14,9 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.0.2
       - uses: actions/checkout@v2
       - name: setup node
         uses: actions/setup-node@v1
@@ -45,6 +48,9 @@ jobs:
       release_id: ${{ steps.create-release.outputs.result }}
 
     steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.0.2
       - uses: actions/checkout@v2
       - name: setup node
         uses: actions/setup-node@v1
@@ -78,6 +84,9 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.0.2
       - uses: actions/checkout@v2
       - name: setup node
         uses: actions/setup-node@v1
