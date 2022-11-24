@@ -7,24 +7,14 @@ use std::{fs::File, io::Write, path::Path};
 
 #[tauri::command]
 fn makefile(filename: String, username: String, phone: String, email: String) -> String {
-    let path = Path::new(&filename);
+    let desktop = tauri::api::path::desktop_dir().unwrap();
+    let path = Path::new(&desktop).join(&filename);
     let mut file = File::create(path).unwrap();
 
-    file.write_all(
-        format!(
-            "Navn: {}\rTlf. nr.: {}\rEmail: {}\r
-            ",
-            username, phone, email
-        )
-        .as_bytes(),
-    )
-    .unwrap();
+    file.write_all(format!("Navn: {}\rTlf. nr.: {}\rEmail: {}", username, phone, email).as_bytes())
+        .unwrap();
 
-    let _file = match File::open(&path) {
-        Err(why) => panic!("Kunne ikke åbne {}: {}", path.to_string_lossy(), why),
-        Ok(file) => file,
-    };
-    filename
+    format!("{} lavet på dit skrivebord!", filename)
 }
 
 fn main() {

@@ -117,7 +117,7 @@ function App() {
         </button>
         {status.length > 0 ? (
           <div className="self-center text-green-300">
-            <p>{status} oprettet!</p>
+            <p>{status}</p>
           </div>
         ) : null}
       </form>
